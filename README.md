@@ -9,11 +9,11 @@ You can use the tool through the following steps:
 cpan install NMAP::PARSER
 
 2 - Run your nmap scan
-Example: nmap 10.0.0.0/8 -oA network
+Example: nmap 10.0.0.0/8 -oX nmap_results
 
 3 - Run nmap2acl and vizualize the data
-perl nmap2acl.pl nmap.xml
+perl nmap2acl.pl nmap_results.xml
 
 4 - Save results
-perl nmap2acl.pl nmap.xml >> acl
+perl nmap2acl.pl nmap_results.xml >> acl
 
