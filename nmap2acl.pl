@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 
+use v5.10.1;
 use warnings;
 
 use Nmap::Parser;
-use Switch;
 
 my $np = new Nmap::Parser;
 my $type = $ARGV[0];
@@ -14,9 +14,9 @@ my $infile = $ARGV[1];
 $np->parsefile($infile);
 
 #DETECTING FIREWALL TYPE
-switch ($type) {
-	case "cisco"	{ $coment="!"; $mask="permit tcp host %s any eq %s\n"; $prefix="\n";}
-	case "pf"	{ $coment="#"; $mask="pass quick on \$ext_if proto tcp from any to %s port %s\n"; 
+for ($type) {
+	when (/^cisco/)	{ $coment="!"; $mask="permit tcp host %s any eq %s\n"; $prefix="\n";}
+	when (/^pf/)	{ $coment="#"; $mask="pass quick on \$ext_if proto tcp from any to %s port %s\n"; 
 			  $prefix = "# This is an example of firewall configuration. It should be changed to meet your needs.
 # Configuration of interfaces
 ext_if=COMPLETE HERE
@@ -32,7 +32,7 @@ block out on \$ext_if all
 pass in on \$int_if all
 pass out on \$int_if all\n\n";}
 
-	case "iptables"	{ $coment="#"; $mask="iptables -A INPUT -p tcp -s %s --sport %s -j ACCEPT\n";
+	when (/^iptables/)	{ $coment="#"; $mask="iptables -A INPUT -p tcp -s %s --sport %s -j ACCEPT\n";
 			  $prefix = "iptables -F
 
 # Skip conectons established and related
@@ -43,7 +43,7 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp -j DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT DROP\n\n";}
-	else		{ $coment="!"; $mask="permit tcp host %s any eq %s\n"; $prefix="\n"; }
+	default		{ $coment="!"; $mask="permit tcp host %s any eq %s\n"; $prefix="\n"; }
     }
 
 printf ("%s",$prefix);
