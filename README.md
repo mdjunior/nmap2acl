@@ -17,7 +17,7 @@ You can use the tool through the following steps:
 
 1 - Install dependencies
 
-    cpan install NMAP::PARSER
+    cpan Nmap::Parser
 
 
 2 - Run your nmap scan
