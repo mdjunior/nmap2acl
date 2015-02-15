@@ -9,20 +9,22 @@ You can use the tool through the following steps:
 
 1 - Install dependencies
 
-cpan install NMAP::PARSER
+    cpan install NMAP::PARSER
 
 
 2 - Run your nmap scan
 
-Example: nmap 10.0.0.0/8 -oX nmap_results
+Example:
+
+    nmap 10.0.0.0/8 -oX nmap_results
 
 
 3 - Run nmap2acl and vizualize the data
 
-perl nmap2acl.pl nmap_results.xml
+    perl nmap2acl.pl nmap_results.xml
 
 
 4 - Save results
 
-perl nmap2acl.pl nmap_results.xml >> acl
+    perl nmap2acl.pl nmap_results.xml >> acl
 
