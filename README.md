@@ -29,10 +29,10 @@ Example:
 
 3 - Run nmap2acl and vizualize the data (for iptables rules)
 
-    perl nmap2acl.pl iptables nmap_results.xml
+    perl nmap2acl.pl -t iptables -i nmap_results.xml
 
 
 4 - Save results
 
-    perl nmap2acl.pl iptables nmap_results.xml >> iptables.rules
+    perl nmap2acl.pl -t iptables -i nmap_results.xml >> iptables.rules
 
