@@ -36,3 +36,12 @@ Example:
 
     ./nmap2acl.pl -t iptables -i nmap_results.xml >> iptables.rules
 
+Export Formats
+--------------
+
+Currently the nmap2acl supports the following output formats:
+- iptables
+- pf (packet filter)
+- cisco (Cisco ACLs)
+
+If you would like nmap2acl support other formats, please open an issue.
